@@ -1,0 +1,6 @@
+@ClassRoomApp.WebAPI_HostAddress = http://localhost:5137
+
+GET {{ClassRoomApp.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
