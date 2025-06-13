@@ -32,9 +32,21 @@ namespace ClassRoomApp.Services
             return list;
         }
 
-        public Task<ClassRoomDTO> GetClassroomByIdAsync(int id)
+        public async Task<ClassRoomDTO> GetClassroomByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var classRoomEntity = await _classRoomRepositories.GetClassroomByIdAsync(id);
+            if (classRoomEntity == null)
+            {
+                return null;
+            }
+            var classRoomDto = new ClassRoomDTO
+            {
+                Id = classRoomEntity.Id,
+                Name = classRoomEntity.Name,
+                ClassCode = classRoomEntity.ClassCode,
+                Description = classRoomEntity.Description
+            };
+            return classRoomDto;
         }
 
         public async Task CreateCLassroomAsync(ClassRoomDTO classroom)
