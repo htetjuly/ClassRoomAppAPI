@@ -41,7 +41,12 @@ namespace ClassRoomApp.Data.Repositories
 
         public Task UpdateClassroomAsync(ClassRoom classRoom)
         {
-            throw new NotImplementedException();
+            if (classRoom == null)
+            {
+                throw new ArgumentNullException(nameof(classRoom), "Classroom cannot be null");
+            }
+            _context.ClassRooms.Update(classRoom);
+            return _context.SaveChangesAsync();
         }
     }
 }
