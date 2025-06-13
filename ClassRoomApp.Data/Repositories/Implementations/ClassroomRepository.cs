@@ -23,9 +23,14 @@ namespace ClassRoomApp.Data.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public Task DeleteClassroomAsync(int id)
+        public async Task DeleteClassroomAsync(int id)
         {
-            throw new NotImplementedException();
+            var classroom = await _context.ClassRooms.FindAsync(id);
+            if (classroom != null)
+            {
+                _context.ClassRooms.Remove(classroom);
+                await _context.SaveChangesAsync();
+            }
         }
 
         public async Task<IEnumerable<ClassRoom>> GetAllClassroomsAsync()
